@@ -72,8 +72,3 @@ CREATE TABLE cartItem( -- many to one with order
 	FOREIGN KEY(productId) REFERENCES product(productId),
 	FOREIGN KEY(orderId) REFERENCES orders(orderId)
 );
-
-
-
-
-
