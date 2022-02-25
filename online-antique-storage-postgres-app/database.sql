@@ -1,17 +1,17 @@
 CREATE TABLE catagories(
 	catagoryId SERIAL,
-	catagoryName VARCHAR(50) NOT NULL,
-	catagoryDescription VARCHAR(50) DEFAULT 'No Description Available',
-	catagoryImage VARCHAR(50) DEFAULT 'assets/defaultCatagory.jpg',
+	catagoryName VARCHAR(25) NOT NULL,
+	catagoryDescription VARCHAR(100) DEFAULT 'No Description Available',
+	catagoryImage VARCHAR(30) DEFAULT 'assets/defaultCatagory.jpg',
 
 	PRIMARY KEY (catagoryId)
 );
 
 CREATE TABLE subCatagories(
 	subCatagoryId SERIAL,
-	subCatagoryName VARCHAR(50) NOT NULL,
-	subCatagoryDescription VARCHAR(50) DEFAULT 'No Description Available',
-	subCatagoryImage VARCHAR(50) DEFAULT 'assets/defaultCatagory.jpg',
+	subCatagoryName VARCHAR(25) NOT NULL,
+	subCatagoryDescription VARCHAR(100) DEFAULT 'No Description Available',
+	subCatagoryImage VARCHAR(30) DEFAULT 'assets/defaultCatagory.jpg',
 
 	catagoryId int NOT NULL,
 	
@@ -21,9 +21,9 @@ CREATE TABLE subCatagories(
 
 CREATE TABLE product(
 	productId SERIAL,
-	productName VARCHAR(50) NOT NULL,
+	productName VARCHAR(25) NOT NULL,
 	productDescription VARCHAR(100) DEFAULT 'No Description Available.',
-	productImage VARCHAR(50) DEFAULT 'assets/defaultProduct.jpg',
+	productImage VARCHAR(30) DEFAULT 'assets/defaultProduct.jpg',
 	subCatagoryId int NOT NULL,
 
 	price float NOT NULL,
@@ -42,9 +42,9 @@ CREATE TABLE users(
 	username VARCHAR(15) NOT NULL,
 	passwd VARCHAR (18) NOT NULL, --idealy hashed and salted
 	
-	firstName VARCHAR (10),
-	lastName VARCHAR(10),
-	address VARCHAR(50),
+	firstName VARCHAR (15),
+	lastName VARCHAR(15),
+	address VARCHAR(200),
 	contractNo VARCHAR(15),
 	
 	administrator boolean DEFAULT FALSE,
@@ -72,8 +72,3 @@ CREATE TABLE cartItem( -- many to one with order
 	FOREIGN KEY(productId) REFERENCES product(productId),
 	FOREIGN KEY(orderId) REFERENCES orders(orderId)
 );
-
-
-
-
-
