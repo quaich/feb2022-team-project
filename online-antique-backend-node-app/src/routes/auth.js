@@ -5,15 +5,16 @@ const router = express.Router();
 router.use(express.json());
 
 router.post("/login", (req, res) => {
+    console.log("ll")
     const { username, password } = req.body;
     const statement = `SELECT EXISTS(SELECT * FROM users WHERE username = '${username}' AND passwd = '${password}')`;
     db.makeQuery(statement).then(result => {
         console.log(result.rows[0].exists);
-        if (result.rows[0].exists = true){
-            res.send("Login Success")
+        if (result.rows[0].exists == true){
+            res.send(JSON.stringify({status: "Success", message: username}))
         }
         else {
-            res.send("Login Failure")
+            res.send(JSON.stringify({status: "Failure", message: username}))
         };
     })
 });

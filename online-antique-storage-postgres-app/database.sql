@@ -1,22 +1,22 @@
-CREATE TABLE catagories(
-	catagoryId SERIAL,
-	catagoryName VARCHAR(25) NOT NULL,
-	catagoryDescription VARCHAR(100) DEFAULT 'No Description Available',
-	catagoryImage VARCHAR(30) DEFAULT 'assets/defaultCatagory.jpg',
+CREATE TABLE categories(
+	categoryId SERIAL,
+	categoryName VARCHAR(25) NOT NULL,
+	categoryDescription VARCHAR(100) DEFAULT 'No Description Available',
+	categoryImage VARCHAR(30) DEFAULT 'assets/defaultCategory.jpg',
 
-	PRIMARY KEY (catagoryId)
+	PRIMARY KEY (categoryId)
 );
 
-CREATE TABLE subCatagories(
-	subCatagoryId SERIAL,
-	subCatagoryName VARCHAR(25) NOT NULL,
-	subCatagoryDescription VARCHAR(100) DEFAULT 'No Description Available',
-	subCatagoryImage VARCHAR(30) DEFAULT 'assets/defaultCatagory.jpg',
+CREATE TABLE subcategories(
+	subCategoryId SERIAL,
+	subCategoryName VARCHAR(25) NOT NULL,
+	subCategoryDescription VARCHAR(100) DEFAULT 'No Description Available',
+	subCategoryImage VARCHAR(30) DEFAULT 'assets/defaultCategory.jpg',
 
-	catagoryId int NOT NULL,
+	categoryId int NOT NULL,
 	
-	PRIMARY KEY(subCatagoryId),
-	FOREIGN KEY(catagoryId) REFERENCES catagories(catagoryId)
+	PRIMARY KEY(subCategoryId),
+	FOREIGN KEY(categoryId) REFERENCES categories(categoryId)
 );
 
 CREATE TABLE product(
@@ -24,17 +24,17 @@ CREATE TABLE product(
 	productName VARCHAR(25) NOT NULL,
 	productDescription VARCHAR(100) DEFAULT 'No Description Available.',
 	productImage VARCHAR(30) DEFAULT 'assets/defaultProduct.jpg',
-	subCatagoryId int NOT NULL,
+	subCategoryId int NOT NULL,
 
 	price float NOT NULL,
 	discountPercent int DEFAULT 0,
-	discountPrice int DEFAULT NULL,
+	discountPrice float DEFAULT NULL,
 	
 	reviewScore int DEFAULT 0,
 	stock int DEFAULT 0,
 	
 	PRIMARY KEY (productId),
-	FOREIGN KEY (subCatagoryId) REFERENCES subcatagories(subCatagoryId)
+	FOREIGN KEY (subCategoryId) REFERENCES subCategories(subCategoryId)
 );
 
 CREATE TABLE users(

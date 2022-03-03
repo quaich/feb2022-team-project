@@ -27,45 +27,5 @@ app.use("/api/v1/auth/", authRoute);
 app.use("/api/v1/products", productRoute);  
 
 app.listen(3000, () => {
-  console.log("server started...");
+  console.log("Server Listening on Port 3000");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-app.get('/', (req, res) => {
-    res.send("Hello world! How are you?");
-});
-
-app.get('/add_item/:productName&:productDescription&:productImage&:subCatagoryId&:price', (req, rest)=> {
-    console.log(req.params);
-})
-
-// route 
-
-app.get('/api/product/:id', (req, res) => {
-    res.send(req.params.id);
-});
-
-app.get('/api/product/:year/:day', (req, res) => {
-    res.send(req.params);
-});
-app.listen(3000, () => console.log("Listening port 3000...!"));
-
-*/
