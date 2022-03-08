@@ -1,0 +1,71 @@
+<!-- <div class="form-group col-auto">
+
+  <input type="text" [(ngModel)]="login.username" class="form-control" placeholder="Email">
+
+</div> -->
+<ng-container>
+    <div class="card-table">
+        <div class="cart-product">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Order Id</th>
+
+                        <th>Product Image</th>
+                        <th>Product Id</th>
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of orderproduct; let i = index">
+                        <td>{{i+1}}</td>
+                        <!-- <td>{{item.orderid}}</td> -->
+                        <td class="d-flex align-items-center justify-content-around">
+                            <img [src]="item.productimage" alt="{{item.productname}}" height="60" class="order-1">
+                        </td>
+                        <td>{{item.productid}}</td>
+                        <td>{{item.productname}}</td>
+
+                        <td>{{item.productdescription}}</td>
+
+                        <td>{{item.price | currency:'INR'}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-container>
+<ng-container>
+    <div class="container">
+        <td colspan="4"></td>
+        <td><button class="btn btn-outline-success btn-lg btn-block" (click)="placeOrder()">Order</button></td>
+        <td><strong>Grand Total: {{grandTotal | currency:'INR'}}</strong></td>
+    </div>
+
+</ng-container>
+<!--
+<script>
+    function placeOrder() {
+        var cartid =
+            event.target.parentNode.parentNode.id;
+        //this gives id of tr whose button was clicked
+        var data =
+            document.getElementById(cartid).querySelectorAll(".row-data");
+        /*returns array of all elements with
+        "row-data" class within the row with given id*/
+
+        var productid = data[0].innerHTML;
+        var productname = data[1].innerHTML;
+        var productdescription = data[2].innerHTML;
+        var quantity = data[3].innerHTML;
+        var price = data[4].innerHTML;
+        var grandTotal = data[5].innerHTML;
+
+        alert("ProductId: " + productid + "\nProductName: " + productname + "\nProductDescription: " + productdescription +
+            "\nQuantity: " + quantity + "\nPrice: " + price + "\nGrandTotal: " + grandTotal);
+    }
+</script> -->

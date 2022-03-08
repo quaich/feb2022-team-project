@@ -1,0 +1,199 @@
+<!-- <div class="container">
+    <div class="text-center my-5" *ngIf="product.length==0">
+        <h4>Your Cart is Empty</h4>
+        <button class="btn btn-primary btn-lg mt-3" routerLink="/products">Shop More</button>
+
+
+    </div>
+
+    cart not empty
+
+    <ng-container *ngIf="product.length!=0">
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr class="text-center">
+                            <th>Product Id</th>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Product Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of product; let i=index">
+                            <td>{{c.productid}}</td>
+                            <td class="d-flex align-items-center justify-content-around">
+                                <img [src]="c.productimage" alt="{{c.productname}}" height="60" class="order-1">
+                                <span class="text-danger"><i class="fa fa-trash" (click)="removeItem(i)"></i></span>
+                            </td>
+
+
+                            <td>
+                                <p>{{c.productname}}</p>
+                            </td>
+                            <td>
+                                <p>{{c.productdescription}}</p>
+                            </td>
+                            <td>
+                                <p>{{c.price | currency: 'INR'}}</p>
+                            </td>
+                            <td>
+                                <form>
+
+
+                                    <div>
+                                        <div class="row">
+                                            <div>
+                                                <input type="text" readonly class="form-control col-8 text-center bg-white font-weight-bold " id="counterval" value="{{quantity}}" #Totalcartval>
+                                            </div>
+                                            <a class="btn btn-primary text-white" (click)="decrement()" role="button">
+                                                <i class="fa fa-minus" style="font-size:15px"></i>
+                                            </a>
+                                            <div></div>
+                                            <a class="btn btn-primary text-white" (click)="increment()" role="button">
+                                                <i class="fa fa-plus" style="font-size:15px"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <p>
+                                    {{c.price * quantity}}
+                                </p>
+                            </td>
+                            <td>
+                                <button (click)="removeItem(i)" class="btn btn-danger">Delete</button>
+                            </td>
+
+                        </tr>
+                        <tr class="border-0">
+                            <td style="border: none;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td>{{grandTotal | currency:'INR'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </ng-container>
+
+
+
+
+</div> -->-->
+
+<ng-container *ngIf="product.length !=0">
+    <div class="container">
+        <div class="card-table">
+            <div class="cart-product">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Cart Id</th>
+                            <!-- <th>Order Id</th> -->
+                            <th>Product Image</th>
+                            <th>Product Id</th>
+                            <th>Product Name</th>
+                            <th>Product Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+
+                            <!-- <th>Discount Percent</th> -->
+                            <!-- <th>Total</th> -->
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of product; let i = index">
+                            <td>{{i+1}}</td>
+                            <!-- <td>{{item.orderid}}</td> -->
+                            <td class="d-flex align-items-center justify-content-around">
+                                <img [src]="item.productimage" alt="{{item.productname}}" height="100" class="order-1">
+                            </td>
+                            <td>{{item.productid}}</td>
+                            <td>{{item.productname}}</td>
+
+                            <td style="width: 12%;">{{item.productdescription}}</td>
+
+                            <td style="width: 12%;">{{item.price}}</td>
+                            <td>
+                                <form>
+                                    <!-- class="row" -->
+
+                                    <div>
+                                        <div>
+                                            <div class="row">
+                                                <input type="text" readonly class="form-control col-8 text-center bg-white font-weight-bold " id="counterval" value="{{quantity}}" #Totalcartval>
+                                            </div>
+                                            <a class="btn btn-primary text-white" (click)="decrement()" role="button">
+                                                <i class="fa fa-minus"></i>
+                                            </a>
+                                            <div>
+                                                <a class="btn btn-primary text-white" (click)="increment()" role="button">
+                                                    <i class="fa fa-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <p>
+                                    {{item.price * quantity}}
+                                </p>
+                            </td>
+
+                            <!-- <td style="width: 12%;">{{item.discountpercent}}</td> -->
+                            <!-- <td style="width: 12%;">{{item.total}}</td> -->
+
+                            <td>
+                                <button (click)="removeItem(item)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><button (click)="emptycart()" class="btn btn-danger">Empty cart</button></td>
+                            <td><button routerLink="/products" class="btn btn-primary">Shop More</button></td>
+                            <td><button routerLink="/checkout" (click)="showMessage()" class="btn btn-success">Checkout</button></td>
+
+                            <!-- <td><strong>Grand Total: {{grandTotal | currency:'INR'}}</strong></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+
+
+
+<ng-container *ngIf="product.length==0">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">My Cart</h5>
+        </div>
+        <div class="center">
+            <img class="images" width="300px" height="100px" src="assets/images/emptycart.png">
+
+            <!-- <h6>Add items now</h6> -->
+            <br>
+            <button routerLink="/products" class="btn btn-outline-primary">Shop Now</button>
+        </div>
+    </div>
+</ng-container>

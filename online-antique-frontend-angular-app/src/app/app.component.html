@@ -1,0 +1,112 @@
+<!-- <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">Antique Store</a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Category
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="products"><li>All Product</li></a>
+        <a class="dropdown-item" [routerLink]="'/product'">Car</a>
+        <a class="dropdown-item" href="#">Books</a>
+        <a class="dropdown-item" href="#">Antique Toy</a>
+        <a class="dropdown-item" href="#">Camera</a>
+        <a class="dropdown-item" href="#">bell</a>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="">Home <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="menu">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="products">Product</a>
+        </li>
+      </ul>
+      <form class="d-flex" style="margin-top: 10px;">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+    </div>
+  </nav>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-top: 10px;">
+  <div class="container-fluid">
+   <a class="navbar-brand"  href="#">Antique Store</a>
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="main_nav">
+   <ul class="navbar-nav">
+     <li class="nav-item active"> <a class="nav-link" routerLink="">Home </a> </li>
+     <ng-template [ngIf]="checkLogIn() == false">
+      <li class="nav-item"><a class="nav-link" routerLink="login"> Login </a></li>
+     </ng-template>
+     <li class="nav-item"><a class="nav-link" routerLink="products">Products</a></li>
+     <ng-template [ngIf]="checkAdmin() == true">
+      <li class="nav-item"><a class="nav-link" routerLink="register">Admin</a></li>
+    </ng-template>
+      <ng-template [ngIf]="checkLogIn() == true">
+      <button class="cart" style="margin-left: 900px;" routerLink="cart" class="btn btn-primary">
+        <!-- <i style="font-size: 30px;" class="assets/logo.png"></i> -->
+        <i style="font-size: 20px;" class="fas fa-cart-plus"></i>
+        <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+      </button>
+      <div class="form-group text-center">
+        <button class="btn-success btn btn-primary" (click)="logOut()">log out</button>
+      </div>
+     </ng-template>
+     
+     
+     <!-- <li class="nav-item"><a class="nav-link" routerLink="category">Category</a></li> -->
+     <!-- <li class="nav-item dropdown">
+        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Category</a>
+         <ul class="dropdown-menu">
+         <li><a class="dropdown-item" routerLink=""> Cars</a></li>
+         <li><a class="dropdown-item" href="#"> Diary </a></li>
+         <li><a class="dropdown-item" href="#"> Books </a></li>
+         <li><a class="dropdown-item" href="#"> Cameras</a></li>
+         <li><a class="dropdown-item" href="#"> Antique Toys </a></li>
+         <li><a class="dropdown-item" href="#"> Bells </a></li>
+         </ul>
+     </li> -->
+   </ul>
+
+   </div> <!-- navbar-collapse.// -->
+  </div> <!-- container-fluid.// -->
+ </nav>
+
+<!-- Side-Nav -->
+<div class="row">
+  <div class="col-md-3">
+    <div class="d-flex justify-content-between" style="height: 1400px;">
+      <ul class="nav flex-column text-white w-100">
+          <h1>Category</h1>
+        <li href="#" class="nav-link" *ngFor="let cat of category">
+          <i class="bx bxs-dashboard"></i>
+            <a [routerLink]="['/category', cat.categoryid]">
+              <h4 style="margin-top: 20px;">{{cat.categoryname}}</h4>
+            </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</div>

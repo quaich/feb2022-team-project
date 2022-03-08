@@ -1,0 +1,17 @@
+<div class="container custom-container">
+    <div class="col-3   ">
+      <h3 class="mb-2 text-center">Login</h3>
+      <div class="form-group col-auto">
+        <input type="text" [(ngModel)]="login.username" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group col-auto">
+        <input type="text" [(ngModel)]="login.password" class="form-control" placeholder="Password">
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success btn-lg btn-block" (click)="loginButton()">Login</button>
+      </div>
+      <div class="form-group text-center">
+        <button class="btn btn-success btn-lg btn-block" (click)="testLogin()">test if logged in</button>
+      </div>
+    </div>
+  </div>
