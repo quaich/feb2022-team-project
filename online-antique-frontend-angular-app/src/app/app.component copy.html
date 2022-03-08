@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="">Antique Store</a>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/menu" routerLinkActive="active">☰</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link active" routerLink="/home" routerLinkActive="active">Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/catagories" routerLinkActive="active">Catagories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/products" routerLinkActive="active">Products</a>
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav w-100 justify-content-center">
+      <form class="d-flex flex-fill">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </ul>
+  
+    <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+      <li class="nav-item" >
+        <a class="nav-link active" routerLink="/register" routerLinkActive="active">Register</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link active" routerLink="/login" routerLinkActive="active">Login</a>
+      </li>
+      <ng-template [ngIf]="auth.service.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/cart" routerLinkActive="active">🛒</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/profile" routerLinkActive="active">👤</a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

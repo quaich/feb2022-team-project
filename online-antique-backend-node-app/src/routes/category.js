@@ -57,7 +57,7 @@ router.get("/:id", (req, res) => {
       if (error) {
       return res.send('Internal Error');
       } 
-      return res.json(data.rows[0]);
+      return res.json(data.rows);
       });
   });
   

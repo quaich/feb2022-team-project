@@ -1,0 +1,17 @@
+.card {
+    height: 60vh;
+    margin: 25px;
+    padding: 25px;
+}
+
+.card-table {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: none;
+    word-wrap: break-word;
+    background-color: rgb(157, 224, 233);
+    background-clip: border-box;
+    border: 1px solid rgba(19, 18, 18, 0.2);
+    border-radius: .25rem;
+}

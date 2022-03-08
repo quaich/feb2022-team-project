@@ -8,11 +8,12 @@ router.use(express.json());
 
 //Declan's /add post req
 router.post("/add", (req, res) => {
-  const{productName, productDescription, productImage, subcategoryId, price} = req.body;
-  const statement = `INSERT INTO product(productName, productDescription, productImage, subcategoryId, price) VALUES ('${productName}', '${productDescription}', '${productImage}', '${subcategoryId}', ${price});`
+  const{productName, productDescription, productImage, subCategoryId, price, stock} = req.body;
+  const statement = `INSERT INTO product(productName, productDescription, productImage, subcategoryId, price, stock, categoryId) VALUES ('${productName}', '${productDescription}', '${productImage}', ${subCategoryId}, ${price}, ${stock}, 2);`
+  console.log(statement)
   decdb.makeQuery(statement).then(result => {
-    res.send(result)});
-}); 
+    res.send(JSON.stringify({status: `Updated Rows: ${result.rowCount}`}));
+})})  ; 
 
 
 router.post("/add/discount", (req, res) => {
@@ -28,9 +29,8 @@ router.post("/add/discount", (req, res) => {
           nPercent = discountPrice / result.rows[0].price
         }
         const statement = `UPDATE product SET discountPercent = ${nPercent}, discountPrice = ${nPrice} WHERE productName = '${productName}';`;
-        console.log(statement);
         decdb.makeQuery(statement).then(result => {
-          res.send(JSON.stringify({status: success}));
+          res.send(JSON.stringify({status: `Updated Rows: ${result.rowCount}`}));
         });
   });
 });
@@ -39,13 +39,12 @@ router.post("/add/discount/category", (req, res) => {
   const {subCategoryName, discountPercent } = req.body;
 
   decdb.makeQuery(`SELECT subcategoryid FROM subcategories WHERE subcategoryname = '${subCategoryName}';`).then(result => {
-    console.log(result);
     lookupResult = result.rows[0].subcategoryid;
     statement = `UPDATE product SET discountPercent = ${discountPercent}, discountPrice = price * (1 - (${discountPercent}.0 / 100.0)) WHERE subCategoryId = ${lookupResult};`;
 
-    console.log(statement);
     decdb.makeQuery(statement).then(result => {
-        res.send(JSON.stringify({status: "success"}));
+        console.log(result.rowCount);
+        res.send(JSON.stringify({status: `Updated Rows: ${result.rowCount}`}));
     });
   });
 
@@ -64,7 +63,6 @@ db.query(query,(err, result) => {
   if(err){
     console.log('error', err);
   }if(result.length != 0){
-
     res.send(result.rows);
   }
 })
@@ -153,9 +151,3 @@ db.end;
 
 
 module.exports = router;
-
-
-
-module.exports = router;
-
-

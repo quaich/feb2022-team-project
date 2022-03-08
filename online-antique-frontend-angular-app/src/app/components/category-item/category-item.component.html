@@ -1,0 +1,31 @@
+ <!-- display products by category -->
+
+ <h1>Products By Category</h1>
+ <div class="row" style="margin: 20px;">
+    <div class="col-md-4 border" *ngFor="let p of product | paginate : {itemsPerPage:6, currentPage:p};">
+        <div class="">
+          <img class="product-image" style="height: 270px; width: 270px;" src="{{p.productimage}}" alt="">
+          <a [routerLink]="['/products', p.productid]">
+            <h4 style="margin-top: 20px;">{{p.productname}}</h4>
+          </a>          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <p>{{p.productdescription}}</p>
+          <p>Price: {{p.price | currency: 'INR'}}</p>
+          <p style="color: red;">Discount {{p.discountpercent}}%</p>
+          <!--<button class="btn btn-outline-primary">Add to Cart</button>-->
+          </div>
+    </div>
+
+    <!-- pagination -->
+
+    <div class="pagination justify-content-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>

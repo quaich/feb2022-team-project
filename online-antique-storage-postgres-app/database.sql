@@ -54,9 +54,8 @@ CREATE TABLE users(
 
 CREATE TABLE orders(
 	orderId SERIAL,
-	cartItemId int NOT NULL,
 	totalPrice float DEFAULT 0.00,
-	userId int NOT NULL,
+	userId int,
 	
 	PRIMARY KEY (orderId),
 	FOREIGN KEY (userId) REFERENCES users(userId)

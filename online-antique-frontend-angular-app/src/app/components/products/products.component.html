@@ -1,0 +1,33 @@
+
+<nav class="navbar">
+  <input class="form-control" type="text" name="productname" [(ngModel)]="productname" (ngModelChange)="search()"
+  placeholder="Search for products...">
+</nav>
+
+<ng-container *ngIf="products.length >0">
+<div class="row" style="margin: 20px;">
+  <div class="col-md-4 border" *ngFor="let product of products | paginate : {itemsPerPage:6, currentPage:p};">
+      <div class="">
+        <img class="product-image" style="height: 270px; width: 270px;" src="{{product.productimage}}" alt="">
+        <a [routerLink]="['/products', product.productid]">
+          <h4 style="margin-top: 20px;">{{product.productname}}</h4>
+        </a>
+        <div class="rating">
+          <div class="stars">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+          <span class="review-no">41 reviews</span>
+        </div>
+        <p>{{product.productdescription}}</p>
+        <p>Price: {{product.price | currency: 'INR'}}</p>
+        <p style="color: red;">Discount {{product.discountpercent}}%</p>
+        <!--<button class="btn btn-outline-primary">Add to Cart</button>-->
+        </div>
+  </div>
+<div class="pagination justify-content-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

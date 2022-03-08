@@ -1,0 +1,19 @@
+.pagination {
+  margin-top: 50px;
+  align-content: right;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+}
+
+.col-md-4 {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.checked,
+.price span {
+  color: #ff9f1a;
+}

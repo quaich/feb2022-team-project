@@ -2,8 +2,10 @@ const express = require("express");
 // import route in app.js
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/products.js");
-const cors = require("./utils/cors.js");
 const categoryRoute = require('./routes/category');
+const cartRoute = require('./routes/cart.js');
+const cors = require("./utils/cors.js");
+
 const bodyParser = require("body-parser");
 
 // call the function
@@ -30,8 +32,9 @@ app.use((req, res, next) => {
 
 // middleware - use()
 app.use("/api/v1/auth/", authRoute);
-app.use("/api/v1/product", productRoute);  
+app.use("/api/v1/products", productRoute);  
 app.use("/api/v1/category", categoryRoute); 
+app.use("/api/v1/cart", cartRoute);
 
 app.listen(3000, () => {
   console.log("Server Listening on Port 3000");

@@ -1,0 +1,74 @@
+
+<div class="container" *ngFor="let p of product">
+  <div class="card">
+    <div class="container-fliud">
+      <div class="wrapper row">
+        <div class="preview col-md-6">
+
+          <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1">
+              <ng-container *ngIf="p.productimage">
+              <figure class="product__figure">
+                  <img
+                      loading="lazy"
+                      *ngIf="p.productimage"
+                      width="500px"
+                      height="500px"
+                      class="product__image"
+                      [src]="p.productimage"
+                      alt=""
+                  />
+              </figure>
+          </ng-container></div>
+            <!-- <div class="tab-pane" id="pic-2"><img src="assets/images/camera" /></div>
+            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> -->
+          </div>
+
+          <!-- <ul class="preview-thumbnail nav nav-tabs">
+            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+            <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+          </ul> -->
+
+        </div>
+        <div class="details col-md-6">
+          <h3 class="product-title">{{p.productname}}</h3>
+          <div class="rating">
+            <div class="stars">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <div class="product__content">
+            <h5>Description: </h5>
+            <p class="product__description">{{ p.productdescription }}</p>
+        </div>
+          <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
+          <h4 class="price">Discount price: <span>{{p.discountprice | currency: 'INR'}}</span></h4>
+          <footer class="product__footer">
+            <em class="product__price">Actual Price: {{ p.price | currency: 'INR' }}</em>
+              <p style="color: red;">With {{p.discountpercent}}</p>
+            <br>
+
+        </footer>
+          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+
+          <div class="action">
+            <ng-template [ngIf]="checkLogIn() === true">
+              <button class="add-to-cart btn btn-default" type="button" (click)=addtocart(p)>Add to Cart</button>
+              <button class="shop-more btn btn-default" type="button" style="margin-left: 5px;" [routerLink]="['/products']">Continue Shopping</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
