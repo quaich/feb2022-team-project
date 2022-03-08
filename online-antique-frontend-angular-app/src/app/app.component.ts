@@ -23,7 +23,7 @@ export class AppComponent{
   service: CategoryService;
   category: Category[] = [];
   catData: any;
-
+  
   //public product:Array<Products> = [];
 
   constructor(service: CategoryService, private cartService: CartService, private authService: AuthService) {
@@ -66,6 +66,10 @@ export class AppComponent{
     if(this.authService.isLoggedOut() === true){
       window.alert("Logout Success!")
     }
+  }
+
+  getUserName(){
+    return localStorage.getItem("username");
   }
 
 }

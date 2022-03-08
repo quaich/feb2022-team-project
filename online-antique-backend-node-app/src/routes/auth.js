@@ -32,7 +32,7 @@ module.exports = router;
 
 
 
-const RSA_PRIVATE_KEY = fs.readFileSync('./private.key');
+const RSA_PRIVATE_KEY = fs.readFileSync('./src/private.key');
 
 function loginRoute(req, res) {
 
